@@ -33,20 +33,18 @@
                 <a href="<?php echo site_url('links/homeLink'); ?>">Home</a>
             </li>
             <li>
-                <a href="<?php echo site_url('ShowCRUD/showView'); ?>">Shows</a>
-            </li>
-            <li>
-                <a href="<?php echo site_url('AlbumCRUD/AlbumView'); ?>">Albums</a>
+                <a href="<?php echo site_url('AlbumCRUD/albumView'); ?>">Albums</a>
             </li>
         </ul>
 </nav>
-<div class="container col-lg-4 col-lg-offset-1 col-md-4 align-center home_links">
-    <h2 class="text-center">Shows</h2>
-    <a href="<?php echo site_url('ShowCRUD/showView'); ?>"><img class="img-responsive img-circle" src="<?php echo base_url();?>assets/shows_img.png"></a>
-</div>
-<div class="container col-lg-4 col-lg-offset-2 col-md-4 align-center home_links">
-    <h2 class="text-center">Albums</h2>
-    <a href="<?php echo site_url('AlbumCRUD/AlbumView'); ?>"><img class="img-responsive img-circle" src="<?php echo base_url();?>assets/albums_img.jpg"></a>
+<div class="show_content container col-lg-12 col-md-12">
+    <ul class="container-fluid">
+        <?php
+        foreach($superarr as $out){
+            echo "<li><h3>". $out['bname']."</h3><h3>". $out['venue'] ."</h3><p>".$out['date'] ."</p><p>".$out['city'] ."</p><p>".$out['address'] ."</p>"."</li>";
+        }
+        ?>
+    </ul>
 </div>
 
 </body>

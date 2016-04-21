@@ -25,7 +25,7 @@
                 <a href="<?php echo site_url('links/homeLink'); ?>">Home</a>
             </li>
             <li>
-                <a href="<?php echo site_url('AlbumCRUD/index'); ?>">Your Albums</a>
+                <a href="<?php echo site_url('ShowCRUD/index'); ?>">Your Shows</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right nav-bname">
@@ -35,11 +35,10 @@
         </ul>
 </nav>
 <div class="userform container col-lg-3 col-md-3">
-    <form class="form-horizontal" method="post" action="<?php echo site_url('ShowCRUD/addShow'); ?>">
+    <form class="form-horizontal" enctype="multipart/form-data" method="post" action="<?php echo site_url('AlbumCRUD/addAlbum'); ?>">
         <fieldset>
 
-            <legend>Add A Show</legend>
-
+            <legend>Add An Album</legend>
 
             <div class="form-group">
                 <label class="col-md-2 control-label" for="textinput">Band Name</label>
@@ -49,60 +48,43 @@
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label" for="textinput">Date</label>
+                <label class="col-md-2 control-label" for="textinput">Year</label>
                 <div class="col-md-9">
-                    <input id="date" name="date" type="date" placeholder="Date" class="form-control input-md" value="" required>
+                    <input id="year" name="year" type="text" placeholder="Year" class="form-control input-md" value="" required>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label" for="textinput">Venue</label>
+                <label class="col-md-2 control-label" for="textinput">Title</label>
                 <div class="col-md-9">
-                    <input id="venue" name="venue" type="text" placeholder="Venue" class="form-control input-md" value="" required>
+                    <input id="title" name="title" type="text" placeholder="Title" class="form-control input-md" value="" required>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label" for="textinput">Address</label>
+                <label class="col-md-2 control-label" for="textinput">Image</label>
                 <div class="col-md-9">
-                    <input id="address" name="address" type="text" placeholder="Address" class="form-control input-md" value="" required>
+                    <input id="userfile" name="userfile" type="file" class="form-control input-md" value="" required>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="col-md-2 control-label" for="textinput">City</label>
-                <div class="col-md-9">
-                    <input id="city" name="city" type="text" placeholder="City" class="form-control input-md" value="" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-md-2 control-label" for="textinput">State</label>
-                <div class="col-md-9">
-                    <input id="state" name="state" type="text" placeholder="State" class="form-control input-md" value="" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-md-2 control-label" for="textinput">Zipcode</label>
-                <div class="col-md-9">
-                    <input id="zipcode" name="zipcode" type="text" placeholder="Zipcode" class="form-control input-md" value="" required>
-                </div>
-            </div>
+            <p style="text-align: center;">We recommend images that are 700x700</p>
 
             <button type="submit" class="btn btn-primary btn-warning col-lg-9 col-md-9 col-md-offset-2">Submit</button>
 
         </fieldset>
     </form>
 </div>
-<div class="user_content container col-lg-8 col-md-8">
+
+<div class="container col-lg-8 col-md-8 user_content">
     <ul class="container-fluid">
         <?php
         foreach($superarr as $out){
-            echo "<li><h3>". $out['bname']."</h3><h3>". $out['venue'] ."</h3><p>".$out['date'] ."</p><p>".$out['city'] ."</p><p>".$out['address'] ."</p>";
-            echo "<a class='c_delete' href='".base_url()."index.php/ShowCRUD/deleteShow/".$out['id']."'>D</a>";  //Delete button. Redirects to delete.php then back to clients.php
-            echo "<a class='c_update' href='".base_url()."index.php/showcrud/requestShowUpdate/".$out['id']."'>E</a>";  //Edit button. Redirects to update.php then back to clients.php
-            echo "</li>";   //closing the list item tag
+            echo "<li style='width: 48%; padding: 3% 3% 3% 3%;'><h3>". $out['bname']."</h3><p>".$out['title'] ."</p>";
+            echo "<img class='img-responsive album_image' src='".base_url().'uploads/'.$out['image']."'/>";
+            echo "<p>".$out['year']."</p>";
+            echo "<a class='c_delete' href='".base_url()."index.php/ALbumCRUD/deleteAlbum/".$out['id']."/".$out['image']."'>D</a>";
+            echo "<a class='c_update' href='".base_url()."index.php/AlbumCRUD/requestAlbumUpdate/".$out['id']."'>E</a>";
+            echo "</li>";
         }
         ?>
     </ul>

@@ -1,21 +1,21 @@
 <?php
-class ShowModel extends CI_Model{
+class AlbumModel extends CI_Model{
     function __construct()
     {
         parent::__construct();
         $this->load->library('session');
         $this->load->model('validate');
     }
-    function getShow(){
+    function getAlbum(){
         $uid = $this->session->userdata('userid');
-        $sql = "select * from shows where userid =". $uid." order by date";
+        $sql = "select * from albums where userid =". $uid." order by year";
         $query = $this->db->query($sql);
         $result = $query->result();
 
         return $result;
     }
-    function getAllShows(){
-        $sql = "select * from shows order by date";
+    function getAllAlbums(){
+        $sql = "select * from albums order by year";
         $query = $this->db->query($sql);
         $result = $query->result();
         return $result;

@@ -18,14 +18,10 @@ class ShowCrud extends CI_Controller{
         $userArr = array('superarr' => $this->makeArray($userD), 'bname' => $bname);
         $this->load->view('user_info', $userArr);
     }
-    function homeLink(){
-        $this->load->view('landing_view');
-    }
-    function loginLink(){
-        $this->load->view('login_view');
-    }
-    function showsLink(){
-        $this->load->view('allShows_view');
+    function showView(){
+        $shows = $this->showModel->getAllShows();
+        $showArr = array('superarr' => $this->makeArray($shows));
+        $this->load->view('shows_view', $showArr);
     }
     function makeArray($data)
     {

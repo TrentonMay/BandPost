@@ -1,4 +1,3 @@
-<?php $this->load->helper('url'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,20 +12,24 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="container col-lg-2">
-            <a class="navbar-brand brand" href="<?php echo site_url('ShowCRUD/homeLink'); ?>">
+            <a class="navbar-brand brand" href="<?php echo site_url('links/homeLink'); ?>">
                 <img alt="Brand" src="<?php echo base_url();?>assets/BandPost_logo.png">
             </a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a href="<?php $login = $this->session->userdata('logged_in');
-                if($login == true){echo site_url('Logout/index');}else{ site_url('ShowCRUD/loginLink');}?>"><?php if($login == true){echo "Logout";}else{ echo "";}?></a>
+                if($login == true){echo site_url('Logout/index');}else{ site_url('links/loginLink');}?>"><?php if($login == true){echo "Logout";}else{ echo "";}?></a>
             </li>
             <li>
-                <a href="<?php echo site_url('ShowCRUD/homeLink'); ?>">Home</a>
+                <a href="<?php $login = $this->session->userdata('logged_in');
+                if($login == true){echo site_url('AlbumCRUD/index');}else{ echo "";}?>"><?php if($login == true){echo "Your Albums";}else{ echo "";}?></a>
             </li>
             <li>
-                <a href="#">Your Shows</a>
+                <a href="<?php echo site_url('links/homeLink'); ?>">Home</a>
+            </li>
+            <li>
+                <a href="<?php echo site_url('ShowCRUD/index'); ?>">Your Shows</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right nav-bname">

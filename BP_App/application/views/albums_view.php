@@ -35,18 +35,19 @@
             <li>
                 <a href="<?php echo site_url('ShowCRUD/showView'); ?>">Shows</a>
             </li>
-            <li>
-                <a href="<?php echo site_url('AlbumCRUD/AlbumView'); ?>">Albums</a>
-            </li>
         </ul>
 </nav>
-<div class="container col-lg-4 col-lg-offset-1 col-md-4 align-center home_links">
-    <h2 class="text-center">Shows</h2>
-    <a href="<?php echo site_url('ShowCRUD/showView'); ?>"><img class="img-responsive img-circle" src="<?php echo base_url();?>assets/shows_img.png"></a>
-</div>
-<div class="container col-lg-4 col-lg-offset-2 col-md-4 align-center home_links">
-    <h2 class="text-center">Albums</h2>
-    <a href="<?php echo site_url('AlbumCRUD/AlbumView'); ?>"><img class="img-responsive img-circle" src="<?php echo base_url();?>assets/albums_img.jpg"></a>
+<div class="container col-lg-12 col-md-12 show_content">
+    <ul class="container-fluid">
+        <?php
+        foreach($albumarr as $out){
+            echo "<li style=' padding: 1% 1% 1% 1%;'><h3>". $out['bname']."</h3><p>".$out['title'] ."</p>";
+            echo "<img class='img-responsive album_image' src='".base_url().'uploads/'.$out['image']."'/>";
+            echo "<p>".$out['year']."</p>";
+            echo "</li>";
+        }
+        ?>
+    </ul>
 </div>
 
 </body>
