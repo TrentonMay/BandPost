@@ -18,7 +18,16 @@ class ShowCrud extends CI_Controller{
         $userArr = array('superarr' => $this->makeArray($userD), 'bname' => $bname);
         $this->load->view('user_info', $userArr);
     }
+    function search(){
+        $zip = $this->input->post('zipcode');
+        $shows = $this->showModel->getSearchShow($zip);
+        $userArr = array('superarr' => $this->makeArray($shows));
+        $this->load->view('shows_view', $userArr);
+    }
     function showView(){
+        $sql = "delete from shows where date < CURRENT_DATE();";
+        $this->db->query($sql);
+
         $shows = $this->showModel->getAllShows();
         $showArr = array('superarr' => $this->makeArray($shows));
         $this->load->view('shows_view', $showArr);

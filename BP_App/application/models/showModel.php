@@ -20,4 +20,10 @@ class ShowModel extends CI_Model{
         $result = $query->result();
         return $result;
     }
+    function getSearchShow($zip){
+        $sql = "select * from shows where zipcode =". $zip;
+        $query = $this->db->query($sql);
+        $result = $query->result();
+        return $result;
+    }
 }

@@ -50,8 +50,6 @@ class AlbumCrud extends CI_Controller{
     function addAlbum(){
         $config['upload_path'] = FCPATH.'uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_width'] = '800';
-        $config['max_height'] = '800';
         $file_name = time();
         $config['file_name'] = $file_name;
         $this->load->library('upload', $config);
@@ -61,6 +59,15 @@ class AlbumCrud extends CI_Controller{
             echo "<script type='text/javascript'>alert('$message')</script>";
         }else{
             $result  = $this->upload->data();
+
+            $config['image_library'] = 'gd2';
+            $config['source_image'] = $result['full_path'];
+            $config['maintain_ratio'] = TRUE;
+            $config['width'] = '700';
+            $config['height'] = '700';
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+
             $data = array(
                 'userid' => $this->session->userdata('userid'),
                 'bname'  => $this->input->post('bname'),

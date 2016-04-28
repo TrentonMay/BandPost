@@ -16,27 +16,46 @@
                 <img alt="Brand" src="<?php echo base_url();?>assets/BandPost_logo.png">
             </a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="<?php $login = $this->session->userdata('logged_in');
-                if($login === true){echo site_url('Logout/index');}?>"><?php if($login == true){echo "Logout";}else{ echo " ";}?></a>
-            </li>
-            <li>
-                <a href="<?php $login = $this->session->userdata('logged_in');
-                if($login == true){echo site_url('ShowCRUD/index');}else{ echo site_url('links/loginLink');}?>"><?php if($login == true){echo "Your Shows";}else{ echo "Login";}?></a>
-            </li>
-            <li>
-                <a href="<?php $login = $this->session->userdata('logged_in');
-                if($login == true){echo site_url('AlbumCRUD/index');}else{ echo "";}?>"><?php if($login == true){echo "Your Albums";}else{ echo "";}?></a>
-            </li>
-            <li>
-                <a href="<?php echo site_url('links/homeLink'); ?>">Home</a>
-            </li>
-            <li>
-                <a href="<?php echo site_url('AlbumCRUD/albumView'); ?>">Albums</a>
+        <ul class="nav navbar-nav navbar-right nav-pills">
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Menu<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="<?php $login = $this->session->userdata('logged_in');
+                        if($login === true){echo site_url('Logout/index');}?>"><?php if($login == true){echo "Logout";}else{ echo " ";}?></a>
+                    </li>
+                    <li>
+                        <a href="<?php $login = $this->session->userdata('logged_in');
+                        if($login == true){echo site_url('ShowCRUD/index');}else{ echo site_url('links/loginLink');}?>"><?php if($login == true){echo "Your Shows";}else{ echo "Login";}?></a>
+                    </li>
+                    <li>
+                        <a href="<?php $login = $this->session->userdata('logged_in');
+                        if($login == true){echo site_url('AlbumCRUD/index');}else{ echo "";}?>"><?php if($login == true){echo "Your Albums";}else{ echo "";}?></a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('links/homeLink'); ?>">Home</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('AlbumCRUD/albumView'); ?>">Albums</a>
+                    </li>
+                </ul>
             </li>
         </ul>
 </nav>
+<div class="container container-fluid search">
+    <form class="form-horizontal pull-right" method="post" action="<?php echo site_url('ShowCRUD/search'); ?>">
+        <div class="form-group">
+            <div class="col-lg-7 col-md-7 pull-left">
+                <input id="zipcode" name="zipcode" type="text" placeholder="Search By Zipcode" class="form-control input-md">
+            </div>
+            <button type="submit" class="btn btn-primary btn-info"><span class="glyphicon glyphicon-align-center glyphicon-search"></span></button>
+            <button type="submit" class="btn btn-primary btn-info pull-right"><a href="<?php echo site_url('ShowCRUD/showView'); ?>" style="text-decoration: none; font-weight: bold; color: white;">Refresh</a></button>
+        </div>
+    </form>
+
+</div>
 <div class="show_content container col-lg-12 col-md-12">
     <ul class="container-fluid">
         <?php

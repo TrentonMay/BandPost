@@ -15,11 +15,13 @@ class Login extends CI_Controller {
         $this->form_validation->set_rules('bname', 'bname', 'required');
         $this->form_validation->set_rules('passwordinput', 'passwordinput', 'required');
 
+        $salty = 'YouSaltyBruh';
         $user = $_POST['bname'];
         $pass = $_POST['passwordinput'];
+        $encrypt = md5($pass.$salty);
 
 
-        $query = $this->validate->login($user, $pass);
+        $query = $this->validate->login($user, $encrypt);
 
         if($this->form_validation->run() == TRUE && $query)
         {

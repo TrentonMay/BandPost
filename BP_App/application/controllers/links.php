@@ -14,9 +14,6 @@ class Links extends CI_Controller{
     function loginLink(){
         $this->load->view('login_view');
     }
-    function showsLink(){
-        $this->load->view('allShows_view');
-    }
 }
 
 ?>

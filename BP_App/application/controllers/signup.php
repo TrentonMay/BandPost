@@ -5,15 +5,18 @@ class SignUp extends CI_Controller{
         parent::__construct();
         $this->load->library('session');
         $this->load->helper('email');
+        $this->load->helper('captcha');
     }
     function index(){
+        $salty = 'YouSaltyBruh';
         $bname = $this->input->post('bname');
         $password = $this->input->post('password');
+        $encrypt = md5($password.$salty);
         $email = $this->input->post('email');
         if(valid_email($email)){
             $data = array(
                 'bname' => $bname,
-                'password' => $password,
+                'password' => $encrypt,
                 'email' => $email
             );
             $this->db->insert('users', $data);
